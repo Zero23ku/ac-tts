@@ -1,6 +1,38 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
+const express = require('express');
 const path = require('node:path')
+//const ffmpegPath  = require('ffmpeg-static');
+//Stream            = require('node-rtsp-stream');
+
+let msgqueue = []
+let server = express();
+
+
+server.get('/message', function(req, res) {
+  const user = req.query.user;
+  const msg = req.query.msg;
+  const obj = {
+      'user' : user,
+      'msg' : msg
+  };
+  msgqueue.push(obj);
+  res.send({
+      'user' : user,
+      'msg' : msg
+  });
+});
+
+server.get('/message/read', function(req,res) {
+  if(msgqueue.length > 0 ) {
+      const element = msgqueue.shift();
+      res.send(element);
+  }else {
+      res.send({});
+  }
+});
+
+server.listen(3000);
 
 function createWindow () {
   // Create the browser window.
@@ -14,6 +46,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+  mainWindow.removeMenu();  //Quitar para debug
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
