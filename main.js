@@ -47,6 +47,7 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
   mainWindow.removeMenu();  //Quitar para debug
+  mainWindow.setResizable(true);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
