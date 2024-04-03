@@ -3,15 +3,29 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <link href="./styles.css" rel="stylesheet">
+    <link href="./public/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./public/stylesheets/style.css" rel="stylesheet">
     <title>TTS Animal Crossing</title>
   </head>
   <body>
     <h1>Prueba de concepto TTS Animal Crossing</h1>
-    <button id="init" type="button"  onclick="initTTS()">Iniciar</button>
+    <br>
+    <h2>Instrucciones para SAMMI</h2>
+    <div>
+      <ul>
+        <li>Importar el siguiente Botón:<br>
+        <code>
+          { "color": 12632256.0, "persistent": 1.0, "text": "TTS AC", "release_duration": 0.0, "queueable": 0.0, "command_list": [ { "b1": "message", "cmd": 66.0, "obsid": "Main", "pos": 0.0, "vis": 1.0, "ms": 0.0, "sel": false, "dis": 0.0, "xpan": 0.0, "b0": "message" }, { "b1": "user_name", "cmd": 66.0, "obsid": "Main", "pos": 1.0, "vis": 1.0, "ms": 0.0, "sel": false, "dis": 0.0, "xpan": 0.0, "b0": "user" }, { "b1": "\/$message$\/", "b3": "", "cmd": 87.0, "obsid": "Main", "pos": 2.0, "vis": 1.0, "ms": 0.0, "sel": false, "dis": 0.0, "xpan": 0.0, "b0": "message", "b2": "!tts", "v0": 0.0 }, { "b1": "\/$message$\/", "cmd": 253.0, "obsid": "Main", "pos": 3.0, "vis": 1.0, "ms": 0.0, "sel": false, "dis": 0, "xpan": 0.0, "b0": "message", "b2": "" }, { "b1": "GET", "b3": "", "cmd": 169.0, "obsid": "Main", "pos": 4.0, "vis": 1.0, "ms": 0.0, "sel": false, "dis": 0.0, "xpan": 0.0, "b0": "http:\/\/localhost:3000\/message?user=\/$user$\/&msg=\/$message$\/", "b4": "", "b2": "" } ], "press_type": 0.0, "x": 0.20000000000000001110223024625157, "border": 2.0, "image": "", "triggers": [ { "sub": 0.0, "user_name": "", "case_sensitive": 0.0, "founder": 0.0, "message": "!tts*", "moderator": 0.0, "group_id": "", "vip": 0.0, "button_id": "ID3", "broadcaster": 0.0, "trg": 0.0, "allow_empty_wildcard": 1.0 } ], "group_id": "", "overlappable": 0.0, "init_variable": "", "deck": 0.0, "width": 0.10000000000000000555111512312578, "button_id": "ID3", "button_duration": 0.0, "y": 0.0, "switch_deck": "", "height": 0.10000000000000000555111512312578, "release_list": [ ], "functions": 81.0, "stretch": 0.0 }
+        </code></li>
+        <li>Modificar el Trigger del botón según se desee</li>
+        <li>Darle al botón "Iniciar"</li>
+      </ul>
+    </div>
+    <button id="init" type="button"  class="btn btn-primary" onclick="initTTS()">Iniciar</button>
 
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+    <script type="text/javascript" src="./renderer.js"></script>
+    <script type="text/javascript" src="./public/javascripts/bootstrap/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="./public/javascripts/riffwave.js"></script>
     <script type="text/javascript" src="./public/javascripts/Blob.js"></script>
     <script type="text/javascript" src="./public/javascripts/FileSaver.min.js"></script>
@@ -21,3 +35,4 @@
     </script>
   </body>
 </html>
+
