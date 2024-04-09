@@ -33,6 +33,11 @@ function checkForMsg() {
     fetch('http://localhost:3000/message/read')
         .then(response => response.json()) // Parsea la respuesta como JSON
         .then(data => {
+            if(!initiated) {
+                initiated = true;
+                document.getElementById('init').classList.add('d-none');
+                document.getElementById('stop').classList.remove('d-none');
+            }
             if (JSON.stringify(data) != '{}') {
                 const msg = data.msg;
                 console.log(msg);
@@ -48,17 +53,15 @@ function checkForMsg() {
 }
 
 function initTTS() {
-    if(!initiated) {
-        intervalId = setInterval(checkForMsg, 5000);
-        /*document.getElementById('init').value = 'Detener';
-        document.getElementById('init').classList.remove('btn-primary');
-        document.getElementById('init').classList.add('btn-danger');*/
-        initiated = true;
-    }else {
-        clearInterval(intervalId);
-        /*document.getElementById('init').value = 'Iniciar';
-        document.getElementById('init').classList.remove('btn-dange');
-        document.getElementById('init').classList.add('btn-primary');*/
-        initiated = false;
-    }
+    document.getElementById('init').setAttribute("disabled", "disabled");
+    document.getElementById('init').innerText  = "Iniciando...";
+    intervalId = setInterval(checkForMsg, 5000);
+}
+
+function stopTTS() {
+    clearInterval(intervalId);
+    document.getElementById('init').removeAttribute("disabled");
+    document.getElementById('init').innerText  = "Iniciar";
+    document.getElementById('stop').classList.add('d-none');
+    document.getElementById('init').classList.remove('d-none');
 }
